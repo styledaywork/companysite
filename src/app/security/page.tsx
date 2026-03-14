@@ -120,6 +120,32 @@ export default function SecurityPage() {
               development, ensuring your products are resilient, reliable, and
               ready for production.
             </p>
+
+            <div className="mt-8">
+              <a
+                href="https://dexqa.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white text-sm font-semibold shadow-lg hover:shadow-xl hover:shadow-brand-secondary/30 transition-all duration-300 hover:scale-105 group"
+              >
+                QA Team
+
+                <svg
+                  className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </a>
+            </div>
+
           </AnimatedSection>
         </div>
       </section>
