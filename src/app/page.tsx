@@ -97,7 +97,7 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-secondary/10 text-brand-secondary text-sm font-semibold mb-6 border border-brand-secondary/20">
+              <span className="inline-flex items-center px-4 py-3 rounded-full bg-brand-secondary/10 text-brand-secondary text-sm font-semibold mt-25 mb-6 border border-brand-secondary/20">
                 <span className="w-2 h-2 rounded-full bg-brand-secondary mr-2 animate-pulse" />
                 Technology Services Partner
               </span>
