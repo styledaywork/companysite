@@ -1,0 +1,83 @@
+# NexusForge — Company Website Walkthrough
+
+## Overview
+
+Built a complete **premium technology services startup website** using **Next.js 16**, **React**, **TailwindCSS 4**, and **Framer Motion**. The site features 9 pages, smooth animations, glassmorphism UI, and the mandatory brand color palette.
+
+## Pages Built
+
+| Page | Route | Key Features |
+|------|-------|-------------|
+| Landing | `/` | Animated hero, services grid, industries preview, tech strip, CTA |
+| About | `/about` | Mission, animated stats, values grid |
+| Services | `/services` | 6 detailed service cards with feature lists |
+| Technologies | `/technologies` | Grouped tech stack with colored sections |
+| Industries | `/industries` | 11 industry cards with HIPAA/Audit Ready badges |
+| Security & QA | `/security` | Dark hero, 8 security + 6 QA service cards, trust indicators |
+| Process | `/process` | 6-step animated timeline |
+| Portfolio | `/portfolio` | 4 interactive project cards with metrics |
+| Contact | `/contact` | Styled form, contact info, enterprise CTA |
+
+## Visual Verification
+
+````carousel
+![Landing Page — Hero section with gradient text, CTA buttons, and stats](/home/sri-jaya-shankaran/.gemini/antigravity/brain/6ae3fc2a-fb7e-409c-9723-d42b354cc7b2/hero_page.png)
+<!-- slide -->
+![About Page — "We Build Technology That Matters" with animated counters](/home/sri-jaya-shankaran/.gemini/antigravity/brain/6ae3fc2a-fb7e-409c-9723-d42b354cc7b2/about_page.png)
+<!-- slide -->
+![Technologies Page — Frontend and Backend tech stacks in gradient cards](/home/sri-jaya-shankaran/.gemini/antigravity/brain/6ae3fc2a-fb7e-409c-9723-d42b354cc7b2/technologies_page.png)
+<!-- slide -->
+![Industries Page — "Solutions for Every Industry" with gradient hero](/home/sri-jaya-shankaran/.gemini/antigravity/brain/6ae3fc2a-fb7e-409c-9723-d42b354cc7b2/industries_page.png)
+````
+
+![Full interaction recording](/home/sri-jaya-shankaran/.gemini/antigravity/brain/6ae3fc2a-fb7e-409c-9723-d42b354cc7b2/landing_page_check_1773475144722.webp)
+
+## Build Verification
+
+- ✅ `npm run build` — **0 errors**, all 10 routes statically generated
+- ✅ `npm run dev` — Dev server running on `http://localhost:3000`
+- ✅ All pages render with correct brand palette, typography, and animations
+- ✅ Navigation between all 9 pages works correctly
+- ✅ Responsive layout renders properly on desktop
+
+## Design System
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| `brand-bg` | `#FDF8E2` | Page background |
+| `brand-primary` | `#C4C3E3` | Primary sections, borders |
+| `brand-accent` | `#FCDD9D` | Highlights, badges |
+| `brand-dark` | `#1E1E2F` | Text color |
+| `brand-secondary` | `#6C63FF` | CTAs, links, active states |
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── globals.css          # Design system + animations
+│   ├── layout.tsx           # Root layout (Inter + Poppins)
+│   ├── page.tsx             # Landing page
+│   ├── about/page.tsx
+│   ├── services/page.tsx
+│   ├── technologies/page.tsx
+│   ├── industries/page.tsx
+│   ├── security/page.tsx
+│   ├── process/page.tsx
+│   ├── portfolio/page.tsx
+│   └── contact/page.tsx
+├── components/
+│   ├── Navbar.tsx           # Glassmorphism sticky nav
+│   ├── Footer.tsx           # Multi-column footer
+│   └── ui/
+│       ├── AnimatedSection.tsx  # Scroll-triggered animations
+│       └── SectionHeading.tsx   # Reusable section header
+```
+
+## Running the Website
+
+```bash
+cd /home/sri-jaya-shankaran/companysite
+npm run dev
+# Open http://localhost:3000
+```
