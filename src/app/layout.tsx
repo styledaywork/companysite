@@ -3,6 +3,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +19,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "NexusForge — Engineering Secure, Scalable Digital Platforms",
+  title: "Shellcoders — Engineering Secure, Scalable Digital Platforms",
   description:
     "We help businesses build powerful web platforms, SaaS products, cloud systems, and secure digital infrastructure. Custom development, DevOps, security, and QA services.",
   keywords: [
@@ -39,7 +40,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="antialiased">
+      <body className="antialiased" suppressHydrationWarning>
+        <ScrollProgress />
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import Link from "next/link";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -63,6 +64,13 @@ const steps = [
 ];
 
 export default function ProcessPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"],
+  });
+  const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
     <>
       {/* Hero */}
@@ -85,12 +93,18 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      {/* Steps */}
+      {/* Steps with Animated Progress Line */}
       <section className="py-24 lg:py-32">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="hidden lg:block absolute left-[39px] top-0 bottom-0 w-px bg-gradient-to-b from-brand-secondary/40 via-brand-primary/30 to-brand-accent/40" />
+          <div className="relative" ref={containerRef}>
+            {/* Static timeline line */}
+            <div className="hidden lg:block absolute left-[39px] top-0 bottom-0 w-px bg-brand-primary/15" />
+
+            {/* Animated progress line */}
+            <motion.div
+              className="hidden lg:block absolute left-[39px] top-0 w-px bg-gradient-to-b from-brand-secondary via-brand-primary to-brand-accent origin-top"
+              style={{ height: lineHeight }}
+            />
 
             <div className="space-y-12 lg:space-y-16">
               {steps.map((step, i) => (
@@ -102,11 +116,22 @@ export default function ProcessPage() {
                   transition={{ duration: 0.6, delay: i * 0.1 }}
                   className="relative flex gap-6 lg:gap-10 group"
                 >
-                  {/* Step number circle */}
+                  {/* Step icon with pulse */}
                   <div className="relative z-10 shrink-0">
-                    <div className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform`}>
+                    <motion.div
+                      className={`w-20 h-20 rounded-2xl ${step.color} flex items-center justify-center text-white shadow-lg transition-all duration-300`}
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      whileInView={{ scale: [0.8, 1] }}
+                      viewport={{ once: true }}
+                    >
                       {step.icon}
-                    </div>
+                    </motion.div>
+                    {/* Pulse ring */}
+                    <motion.div
+                      className={`absolute inset-0 rounded-2xl ${step.color} opacity-30`}
+                      animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0, 0.3] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                    />
                   </div>
 
                   {/* Content */}
@@ -116,7 +141,7 @@ export default function ProcessPage() {
                         Step {step.num}
                       </span>
                     </div>
-                    <h3 className="text-xl lg:text-2xl font-bold font-[var(--font-heading)] text-brand-dark mb-3">
+                    <h3 className="text-xl lg:text-2xl font-bold font-[var(--font-heading)] text-brand-dark mb-3 group-hover:text-brand-secondary transition-colors">
                       {step.title}
                     </h3>
                     <p className="text-brand-dark/60 leading-relaxed max-w-lg">
@@ -133,6 +158,7 @@ export default function ProcessPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 section-gradient relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="absolute inset-0 opacity-20 animated-gradient-bg" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-bold font-[var(--font-heading)] text-brand-dark">
@@ -143,15 +169,17 @@ export default function ProcessPage() {
               to life.
             </p>
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5"
-              >
-                Start a Conversation
-                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <motion.div className="inline-block" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25"
+                >
+                  Start a Conversation
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>

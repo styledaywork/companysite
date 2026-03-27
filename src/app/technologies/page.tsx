@@ -9,6 +9,7 @@ const techStacks = [
     category: "Frontend",
     color: "from-blue-500/20 to-blue-600/5",
     borderColor: "border-blue-400/20",
+    accentColor: "blue",
     techs: [
       { name: "React", desc: "Component-based UI library" },
       { name: "Next.js", desc: "Full-stack React framework" },
@@ -20,6 +21,7 @@ const techStacks = [
     category: "Backend",
     color: "from-green-500/20 to-green-600/5",
     borderColor: "border-green-400/20",
+    accentColor: "green",
     techs: [
       { name: "Node.js", desc: "JavaScript runtime" },
       { name: "Python", desc: "Versatile programming language" },
@@ -31,6 +33,7 @@ const techStacks = [
     category: "Cloud & DevOps",
     color: "from-orange-500/20 to-orange-600/5",
     borderColor: "border-orange-400/20",
+    accentColor: "orange",
     techs: [
       { name: "AWS", desc: "Amazon Web Services" },
       { name: "Docker", desc: "Container platform" },
@@ -43,6 +46,7 @@ const techStacks = [
     category: "Databases",
     color: "from-purple-500/20 to-purple-600/5",
     borderColor: "border-purple-400/20",
+    accentColor: "purple",
     techs: [
       { name: "PostgreSQL", desc: "Relational database" },
       { name: "MongoDB", desc: "Document database" },
@@ -53,9 +57,10 @@ const techStacks = [
     category: "Mobile",
     color: "from-teal-500/20 to-teal-600/5",
     borderColor: "border-teal-400/20",
+    accentColor: "teal",
     techs: [
       { name: "React Native", desc: "Cross-platform mobile" },
-      { name: "Flutter", desc: "Google&apos;s UI toolkit" },
+      { name: "Flutter", desc: "Google's UI toolkit" },
     ],
   },
 ];
@@ -96,19 +101,19 @@ export default function TechnologiesPage() {
                   {stack.techs.map((tech) => (
                     <StaggerItem key={tech.name}>
                       <motion.div
-                        className="group p-5 rounded-2xl bg-white/70 border border-white/50 cursor-default"
+                        className="group p-5 rounded-2xl bg-white/70 border border-white/50 cursor-default gradient-border-hover"
                         whileHover={{
-                          scale: 1.03,
-                          boxShadow: "0 10px 40px rgba(108,99,255,0.1)",
+                          scale: 1.05,
+                          boxShadow: "0 10px 40px rgba(108,99,255,0.12)",
                         }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
-                        <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 flex items-center justify-center mb-3 group-hover:bg-brand-secondary/20 transition-colors">
+                        <div className="w-10 h-10 rounded-xl bg-brand-secondary/10 flex items-center justify-center mb-3 group-hover:bg-brand-secondary/20 group-hover:scale-110 transition-all">
                           <span className="text-lg font-bold text-brand-secondary font-[var(--font-heading)]">
                             {tech.name.charAt(0)}
                           </span>
                         </div>
-                        <h4 className="font-semibold text-brand-dark font-[var(--font-heading)] text-sm">
+                        <h4 className="font-semibold text-brand-dark font-[var(--font-heading)] text-sm group-hover:text-brand-secondary transition-colors">
                           {tech.name}
                         </h4>
                         <p className="text-xs text-brand-dark/50 mt-1">
@@ -140,8 +145,11 @@ export default function TechnologiesPage() {
               { name: "Azure", desc: "Microsoft Azure — enterprise-grade cloud services" },
             ].map((cloud) => (
               <StaggerItem key={cloud.name}>
-                <div className="group p-8 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-brand-dark/5 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-secondary/10 transition-colors">
+                <motion.div
+                  className="group p-8 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover text-center"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="w-16 h-16 rounded-2xl bg-brand-dark/5 flex items-center justify-center mx-auto mb-4 group-hover:bg-brand-secondary/10 group-hover:scale-110 transition-all">
                     <span className="text-2xl font-bold text-brand-dark/60 group-hover:text-brand-secondary transition-colors font-[var(--font-heading)]">
                       {cloud.name.split(" ")[0].charAt(0)}
                     </span>
@@ -150,7 +158,7 @@ export default function TechnologiesPage() {
                     {cloud.name}
                   </h3>
                   <p className="text-sm text-brand-dark/50 mt-2">{cloud.desc}</p>
-                </div>
+                </motion.div>
               </StaggerItem>
             ))}
           </StaggerContainer>

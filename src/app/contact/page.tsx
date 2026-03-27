@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 
 export default function ContactPage() {
@@ -51,58 +51,69 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-3">
               <AnimatedSection>
-                <div className="p-8 lg:p-10 rounded-3xl bg-white/60 border border-brand-primary/15 shadow-lg shadow-brand-dark/5">
+                <div className="p-8 lg:p-10 rounded-3xl bg-white/60 border border-brand-primary/15 shadow-lg shadow-brand-dark/5 gradient-border-hover">
                   <h2 className="text-2xl font-bold font-[var(--font-heading)] text-brand-dark mb-6">
                     Start Your Project
                   </h2>
 
-                  {submitted && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm font-medium"
-                    >
-                      ✓ Thank you! We&apos;ll get back to you within 24 hours.
-                    </motion.div>
-                  )}
+                  <AnimatePresence>
+                    {submitted && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        className="mb-6 p-4 rounded-xl bg-green-50 border border-green-200 text-green-700 text-sm font-medium flex items-center gap-2"
+                      >
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1, rotate: [0, 360] }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                          className="text-lg"
+                        >
+                          ✓
+                        </motion.span>
+                        Thank you! We&apos;ll get back to you within 24 hours.
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label
-                          htmlFor="name"
+                          htmlFor="contact-name"
                           className="block text-sm font-medium text-brand-dark/70 mb-1.5"
                         >
                           Full Name *
                         </label>
                         <input
-                          id="name"
+                          id="contact-name"
                           type="text"
                           required
                           value={formData.name}
                           onChange={(e) =>
                             setFormData({ ...formData, name: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
                           placeholder="John Doe"
                         />
                       </div>
                       <div>
                         <label
-                          htmlFor="email"
+                          htmlFor="contact-email"
                           className="block text-sm font-medium text-brand-dark/70 mb-1.5"
                         >
                           Email Address *
                         </label>
                         <input
-                          id="email"
+                          id="contact-email"
                           type="email"
                           required
                           value={formData.email}
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
                           placeholder="john@company.com"
                         />
                       </div>
@@ -111,36 +122,36 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label
-                          htmlFor="company"
+                          htmlFor="contact-company"
                           className="block text-sm font-medium text-brand-dark/70 mb-1.5"
                         >
                           Company Name
                         </label>
                         <input
-                          id="company"
+                          id="contact-company"
                           type="text"
                           value={formData.company}
                           onChange={(e) =>
                             setFormData({ ...formData, company: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
                           placeholder="Company Inc."
                         />
                       </div>
                       <div>
                         <label
-                          htmlFor="service"
+                          htmlFor="contact-service"
                           className="block text-sm font-medium text-brand-dark/70 mb-1.5"
                         >
                           Service Interested In
                         </label>
                         <select
-                          id="service"
+                          id="contact-service"
                           value={formData.service}
                           onChange={(e) =>
                             setFormData({ ...formData, service: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
                         >
                           <option value="">Select a service</option>
                           <option value="web">Web Development</option>
@@ -156,33 +167,35 @@ export default function ContactPage() {
 
                     <div>
                       <label
-                        htmlFor="message"
+                        htmlFor="contact-message"
                         className="block text-sm font-medium text-brand-dark/70 mb-1.5"
                       >
                         Tell Us About Your Project *
                       </label>
                       <textarea
-                        id="message"
+                        id="contact-message"
                         required
                         rows={5}
                         value={formData.message}
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all resize-none"
                         placeholder="Describe your project requirements, timeline, and budget..."
                       />
                     </div>
 
-                    <button
+                    <motion.button
                       type="submit"
-                      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5"
+                      whileHover={{ scale: 1.02, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold transition-all shadow-lg hover:shadow-xl hover:shadow-brand-secondary/25"
                     >
                       Send Message
                       <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                    </button>
+                    </motion.button>
                   </form>
                 </div>
               </AnimatedSection>
@@ -192,7 +205,10 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <StaggerContainer className="space-y-6">
                 <StaggerItem>
-                  <div className="p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover">
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    className="p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover"
+                  >
                     <div className="w-11 h-11 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center mb-4">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -202,16 +218,19 @@ export default function ContactPage() {
                       Email Us
                     </h3>
                     <p className="text-sm text-brand-dark/60">
-                      hello@nexusforge.dev
+                      hello@shellcoders.dev
                     </p>
                     <p className="text-sm text-brand-dark/40 mt-1">
                       We respond within 24 hours
                     </p>
-                  </div>
+                  </motion.div>
                 </StaggerItem>
 
                 <StaggerItem>
-                  <div className="p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover">
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    className="p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover"
+                  >
                     <div className="w-11 h-11 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center mb-4">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -226,11 +245,14 @@ export default function ContactPage() {
                     <p className="text-sm text-brand-dark/40 mt-1">
                       No commitment required
                     </p>
-                  </div>
+                  </motion.div>
                 </StaggerItem>
 
                 <StaggerItem>
-                  <div className="p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover">
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    className="p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover"
+                  >
                     <div className="w-11 h-11 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center mb-4">
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -245,20 +267,27 @@ export default function ContactPage() {
                     <p className="text-sm text-brand-dark/40 mt-1">
                       Flexible engagement models
                     </p>
-                  </div>
+                  </motion.div>
                 </StaggerItem>
 
                 <StaggerItem>
-                  <div className="p-7 rounded-2xl bg-gradient-to-br from-brand-secondary to-brand-secondary-light text-white">
-                    <h3 className="text-lg font-bold font-[var(--font-heading)] mb-2">
-                      Enterprise Inquiry?
-                    </h3>
-                    <p className="text-sm text-white/80 leading-relaxed">
-                      For large-scale projects and enterprise partnerships,
-                      contact our solutions team directly at{" "}
-                      <strong>enterprise@nexusforge.dev</strong>
-                    </p>
-                  </div>
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    className="p-7 rounded-2xl bg-gradient-to-br from-brand-secondary to-brand-secondary-light text-white overflow-hidden relative"
+                  >
+                    {/* Animated shimmer */}
+                    <div className="absolute inset-0 opacity-20 animated-gradient-bg" />
+                    <div className="relative">
+                      <h3 className="text-lg font-bold font-[var(--font-heading)] mb-2">
+                        Enterprise Inquiry?
+                      </h3>
+                      <p className="text-sm text-white/80 leading-relaxed">
+                        For large-scale projects and enterprise partnerships,
+                        contact our solutions team directly at{" "}
+                        <strong>enterprise@shellcoders.dev</strong>
+                      </p>
+                    </div>
+                  </motion.div>
                 </StaggerItem>
               </StaggerContainer>
             </div>

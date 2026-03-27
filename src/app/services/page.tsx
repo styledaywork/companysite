@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 const services = [
   {
@@ -20,6 +22,7 @@ const services = [
     ],
     color: "bg-blue-500/10 text-blue-600",
     hoverColor: "group-hover:bg-blue-500",
+    borderAccent: "hover:border-blue-400/40",
   },
   {
     icon: (
@@ -36,6 +39,7 @@ const services = [
     ],
     color: "bg-purple-500/10 text-purple-600",
     hoverColor: "group-hover:bg-purple-500",
+    borderAccent: "hover:border-purple-400/40",
   },
   {
     icon: (
@@ -52,6 +56,7 @@ const services = [
     ],
     color: "bg-orange-500/10 text-orange-600",
     hoverColor: "group-hover:bg-orange-500",
+    borderAccent: "hover:border-orange-400/40",
   },
   {
     icon: (
@@ -68,6 +73,7 @@ const services = [
     ],
     color: "bg-red-500/10 text-red-600",
     hoverColor: "group-hover:bg-red-500",
+    borderAccent: "hover:border-red-400/40",
   },
   {
     icon: (
@@ -84,6 +90,7 @@ const services = [
     ],
     color: "bg-green-500/10 text-green-600",
     hoverColor: "group-hover:bg-green-500",
+    borderAccent: "hover:border-green-400/40",
   },
   {
     icon: (
@@ -100,6 +107,7 @@ const services = [
     ],
     color: "bg-teal-500/10 text-teal-600",
     hoverColor: "group-hover:bg-teal-500",
+    borderAccent: "hover:border-teal-400/40",
   },
 ];
 
@@ -131,35 +139,44 @@ export default function ServicesPage() {
       <section className="py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="space-y-8">
-            {services.map((service, i) => (
+            {services.map((service) => (
               <StaggerItem key={service.title}>
-                <div className={`group relative p-8 lg:p-10 rounded-3xl bg-white/60 border border-brand-primary/15 card-hover ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}>
-                  <div className="grid lg:grid-cols-5 gap-8 items-start">
-                    <div className="lg:col-span-3">
-                      <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-5 ${service.hoverColor} group-hover:text-white transition-all`}>
-                        {service.icon}
+                <TiltCard tiltAmount={3}>
+                  <div className={`group relative p-8 lg:p-10 rounded-3xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover ${service.borderAccent}`}>
+                    <div className="grid lg:grid-cols-5 gap-8 items-start">
+                      <div className="lg:col-span-3">
+                        <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-5 ${service.hoverColor} group-hover:text-white transition-all group-hover:scale-110 group-hover:rotate-3`}>
+                          {service.icon}
+                        </div>
+                        <h3 className="text-2xl font-bold font-[var(--font-heading)] text-brand-dark mb-3 group-hover:text-brand-secondary transition-colors">
+                          {service.title}
+                        </h3>
+                        <p className="text-brand-dark/60 leading-relaxed">
+                          {service.desc}
+                        </p>
                       </div>
-                      <h3 className="text-2xl font-bold font-[var(--font-heading)] text-brand-dark mb-3">
-                        {service.title}
-                      </h3>
-                      <p className="text-brand-dark/60 leading-relaxed">
-                        {service.desc}
-                      </p>
-                    </div>
-                    <div className="lg:col-span-2">
-                      <ul className="space-y-3">
-                        {service.features.map((f) => (
-                          <li key={f} className="flex items-start gap-3 text-sm text-brand-dark/70">
-                            <svg className="w-4 h-4 mt-0.5 shrink-0 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                            </svg>
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="lg:col-span-2">
+                        <ul className="space-y-3">
+                          {service.features.map((f, i) => (
+                            <motion.li
+                              key={f}
+                              className="flex items-start gap-3 text-sm text-brand-dark/70"
+                              initial={{ opacity: 0, x: -10 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: i * 0.05 }}
+                            >
+                              <svg className="w-4 h-4 mt-0.5 shrink-0 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                              </svg>
+                              {f}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </TiltCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -169,6 +186,7 @@ export default function ServicesPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 section-gradient relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="absolute inset-0 opacity-20 animated-gradient-bg" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-bold font-[var(--font-heading)] text-brand-dark">
@@ -179,15 +197,17 @@ export default function ServicesPage() {
               services to meet your specific requirements.
             </p>
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5"
-              >
-                Schedule a Consultation
-                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <motion.div className="inline-block" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25"
+                >
+                  Schedule a Consultation
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>

@@ -161,27 +161,27 @@ export default function IndustriesPage() {
             {industries.map((ind) => (
               <StaggerItem key={ind.name}>
                 <motion.div
-                  className="group relative p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover h-full flex flex-col"
-                  whileHover={{ scale: 1.02 }}
+                  className="group relative p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover h-full flex flex-col"
+                  whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center group-hover:bg-brand-secondary group-hover:text-white transition-all">
+                    <div className="w-12 h-12 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center group-hover:bg-brand-secondary group-hover:text-white transition-all group-hover:scale-110 group-hover:rotate-3">
                       {ind.icon}
                     </div>
                     <span className={`shrink-0 ml-3 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${ind.badgeColor}`}>
                       {ind.badge}
                     </span>
                   </div>
-                  <h3 className="text-lg font-semibold font-[var(--font-heading)] text-brand-dark mb-2">
+                  <h3 className="text-lg font-semibold font-[var(--font-heading)] text-brand-dark mb-2 group-hover:text-brand-secondary transition-colors">
                     {ind.name}
                   </h3>
                   <p className="text-sm text-brand-dark/55 leading-relaxed flex-1">
                     {ind.desc}
                   </p>
-                  <div className="mt-5 pt-4 border-t border-brand-primary/10 flex items-center text-sm font-medium text-brand-secondary opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="mt-5 pt-4 border-t border-brand-primary/10 flex items-center text-sm font-medium text-brand-secondary opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
                     Learn more
-                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
@@ -195,6 +195,7 @@ export default function IndustriesPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 section-gradient relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="absolute inset-0 opacity-20 animated-gradient-bg" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-bold font-[var(--font-heading)] text-brand-dark">
@@ -205,15 +206,17 @@ export default function IndustriesPage() {
               how our technology solutions can serve your specific needs.
             </p>
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5"
-              >
-                Contact Us Today
-                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <motion.div className="inline-block" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25"
+                >
+                  Contact Us Today
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>

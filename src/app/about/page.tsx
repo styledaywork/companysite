@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 const values = [
   {
@@ -51,10 +52,10 @@ const values = [
 ];
 
 const stats = [
-  { num: "50+", label: "Projects Delivered" },
-  { num: "30+", label: "Enterprise Clients" },
-  { num: "12+", label: "Industries" },
-  { num: "99.9%", label: "Uptime SLA" },
+  { value: 50, suffix: "+", label: "Projects Delivered" },
+  { value: 30, suffix: "+", label: "Enterprise Clients" },
+  { value: 12, suffix: "+", label: "Industries" },
+  { value: 99.9, suffix: "%", label: "Uptime SLA" },
 ];
 
 export default function AboutPage() {
@@ -66,14 +67,14 @@ export default function AboutPage() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-secondary/10 text-brand-secondary text-sm font-semibold mb-6">
-              About NexusForge
+              About Shellcoders
             </span>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-[var(--font-heading)] text-brand-dark leading-[1.1]">
               We Build Technology{" "}
               <span className="gradient-text">That Matters</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-brand-dark/60 max-w-2xl leading-relaxed">
-              NexusForge is a technology services company specializing in
+              Shellcoders is a technology services company specializing in
               scalable digital products, SaaS platforms, cloud systems, and
               secure technology solutions for businesses across multiple
               industries.
@@ -82,7 +83,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Animated Stats */}
       <section className="py-16 border-b border-brand-primary/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -94,7 +95,7 @@ export default function AboutPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                 >
-                  {s.num}
+                  <AnimatedCounter value={s.value} suffix={s.suffix} />
                 </motion.div>
                 <div className="mt-2 text-sm text-brand-dark/50">{s.label}</div>
               </StaggerItem>
@@ -129,7 +130,7 @@ export default function AboutPage() {
             </AnimatedSection>
 
             <AnimatedSection direction="right">
-              <div className="relative p-8 rounded-3xl bg-white/60 border border-brand-primary/20 shadow-lg shadow-brand-dark/5">
+              <div className="relative p-8 rounded-3xl bg-white/60 border border-brand-primary/20 shadow-lg shadow-brand-dark/5 gradient-border-hover">
                 <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-brand-secondary/10 blur-2xl" />
                 <div className="absolute -bottom-4 -left-4 w-20 h-20 rounded-full bg-brand-accent/20 blur-2xl" />
                 <div className="relative space-y-5">
@@ -140,14 +141,21 @@ export default function AboutPage() {
                     { label: "Transparent, agile project delivery" },
                     { label: "Dedicated teams for every engagement" },
                   ].map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
+                    <motion.div
+                      key={i}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1, duration: 0.4 }}
+                    >
                       <div className="mt-0.5 w-6 h-6 rounded-full bg-brand-secondary/10 flex items-center justify-center shrink-0">
                         <svg className="w-3.5 h-3.5 text-brand-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
                       <span className="text-sm text-brand-dark/70">{item.label}</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -170,8 +178,8 @@ export default function AboutPage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {values.map((v) => (
               <StaggerItem key={v.title}>
-                <div className="group p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover h-full">
-                  <div className="w-11 h-11 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center mb-4 group-hover:bg-brand-secondary group-hover:text-white transition-all">
+                <div className="group p-7 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover h-full">
+                  <div className="w-11 h-11 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center mb-4 group-hover:bg-brand-secondary group-hover:text-white transition-all group-hover:scale-110 group-hover:rotate-3">
                     {v.icon}
                   </div>
                   <h3 className="text-lg font-semibold font-[var(--font-heading)] text-brand-dark mb-2">
@@ -188,6 +196,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-30" />
+        <div className="absolute inset-0 opacity-20 animated-gradient-bg" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-bold font-[var(--font-heading)] text-brand-dark">
@@ -198,15 +207,17 @@ export default function AboutPage() {
               discuss how we can help you build better technology.
             </p>
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5"
-              >
-                Get in Touch
-                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <motion.div className="inline-block" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25"
+                >
+                  Get in Touch
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>

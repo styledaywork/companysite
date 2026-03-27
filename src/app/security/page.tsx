@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 const securityServices = [
   {
@@ -64,36 +66,12 @@ const securityServices = [
 ];
 
 const qaServices = [
-  {
-    title: "Automated Testing",
-    desc: "End-to-end test automation with CI/CD integration for reliable, repeatable test execution.",
-    icon: "⚙️",
-  },
-  {
-    title: "Manual Testing",
-    desc: "Expert exploratory testing to uncover edge cases that automated tests may miss.",
-    icon: "🔍",
-  },
-  {
-    title: "Performance Testing",
-    desc: "Load testing, stress testing, and performance profiling to ensure your app handles scale.",
-    icon: "📊",
-  },
-  {
-    title: "Security Testing",
-    desc: "OWASP-aligned security testing to identify and remediate vulnerabilities before production.",
-    icon: "🔒",
-  },
-  {
-    title: "Load Testing",
-    desc: "Simulate real-world traffic patterns to validate system behavior under peak loads.",
-    icon: "📈",
-  },
-  {
-    title: "Product Validation",
-    desc: "Comprehensive acceptance testing to ensure your product meets all requirements and standards.",
-    icon: "✅",
-  },
+  { title: "Automated Testing", desc: "End-to-end test automation with CI/CD integration for reliable, repeatable test execution.", icon: "⚙️" },
+  { title: "Manual Testing", desc: "Expert exploratory testing to uncover edge cases that automated tests may miss.", icon: "🔍" },
+  { title: "Performance Testing", desc: "Load testing, stress testing, and performance profiling to ensure your app handles scale.", icon: "📊" },
+  { title: "Security Testing", desc: "OWASP-aligned security testing to identify and remediate vulnerabilities before production.", icon: "🔒" },
+  { title: "Load Testing", desc: "Simulate real-world traffic patterns to validate system behavior under peak loads.", icon: "📈" },
+  { title: "Product Validation", desc: "Comprehensive acceptance testing to ensure your product meets all requirements and standards.", icon: "✅" },
 ];
 
 export default function SecurityPage() {
@@ -103,6 +81,16 @@ export default function SecurityPage() {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-brand-dark via-brand-dark-light to-brand-dark" />
         <div className="absolute inset-0 dot-pattern opacity-10" />
+        {/* Animated shield background */}
+        <motion.div
+          className="absolute top-1/2 right-10 -translate-y-1/2 w-[300px] h-[300px] opacity-5"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+          <svg viewBox="0 0 24 24" fill="white" className="w-full h-full">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        </motion.div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-brand-accent text-sm font-semibold mb-6 border border-white/10">
@@ -122,30 +110,25 @@ export default function SecurityPage() {
             </p>
 
             <div className="mt-8">
-              <a
+              <motion.a
                 href="https://dexqa.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white text-sm font-semibold shadow-lg hover:shadow-xl hover:shadow-brand-secondary/30 transition-all duration-300 hover:scale-105 group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center px-7 py-3 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white text-sm font-semibold shadow-lg hover:shadow-xl hover:shadow-brand-secondary/30 transition-all duration-300 group"
               >
                 QA Team
-
                 <svg
                   className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </motion.a>
             </div>
-
           </AnimatedSection>
         </div>
       </section>
@@ -164,17 +147,26 @@ export default function SecurityPage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {securityServices.map((s) => (
               <StaggerItem key={s.title}>
-                <div className="group p-6 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover h-full">
-                  <div className="w-12 h-12 rounded-xl bg-red-500/10 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition-all">
+                <motion.div
+                  className="group p-6 rounded-2xl bg-white/60 border border-brand-primary/15 card-hover-3d gradient-border-hover h-full"
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="w-12 h-12 rounded-xl bg-red-500/10 text-red-600 flex items-center justify-center mb-4 group-hover:bg-red-500 group-hover:text-white transition-all group-hover:scale-110 group-hover:rotate-3 relative">
                     {s.icon}
+                    {/* Pulse effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-xl bg-red-500/20"
+                      animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0, 0.3] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    />
                   </div>
-                  <h3 className="text-base font-semibold font-[var(--font-heading)] text-brand-dark mb-2">
+                  <h3 className="text-base font-semibold font-[var(--font-heading)] text-brand-dark mb-2 group-hover:text-brand-secondary transition-colors">
                     {s.title}
                   </h3>
                   <p className="text-sm text-brand-dark/55 leading-relaxed">
                     {s.desc}
                   </p>
-                </div>
+                </motion.div>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -195,15 +187,24 @@ export default function SecurityPage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {qaServices.map((s) => (
               <StaggerItem key={s.title}>
-                <div className="group p-7 rounded-2xl bg-white/70 border border-brand-primary/15 card-hover h-full">
-                  <span className="text-3xl mb-4 block">{s.icon}</span>
-                  <h3 className="text-lg font-semibold font-[var(--font-heading)] text-brand-dark mb-2">
+                <motion.div
+                  className="group p-7 rounded-2xl bg-white/70 border border-brand-primary/15 card-hover-3d gradient-border-hover h-full"
+                  whileHover={{ y: -4 }}
+                >
+                  <motion.span
+                    className="text-3xl mb-4 block"
+                    whileHover={{ scale: 1.3, rotate: 10 }}
+                    transition={{ type: "spring" }}
+                  >
+                    {s.icon}
+                  </motion.span>
+                  <h3 className="text-lg font-semibold font-[var(--font-heading)] text-brand-dark mb-2 group-hover:text-brand-secondary transition-colors">
                     {s.title}
                   </h3>
                   <p className="text-sm text-brand-dark/55 leading-relaxed">
                     {s.desc}
                   </p>
-                </div>
+                </motion.div>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -215,15 +216,23 @@ export default function SecurityPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { num: "100%", label: "Code Review Coverage" },
-              { num: "OWASP", label: "Aligned Testing" },
-              { num: "24/7", label: "Monitoring Available" },
-              { num: "SOC2", label: "Ready Infrastructure" },
+              { value: 100, suffix: "%", label: "Code Review Coverage" },
+              { display: "OWASP", label: "Aligned Testing" },
+              { display: "24/7", label: "Monitoring Available" },
+              { display: "SOC2", label: "Ready Infrastructure" },
             ].map((s) => (
               <StaggerItem key={s.label} className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold font-[var(--font-heading)] gradient-text">
-                  {s.num}
-                </div>
+                <motion.div
+                  className="text-2xl lg:text-3xl font-bold font-[var(--font-heading)] gradient-text"
+                  whileInView={{ scale: [0.8, 1] }}
+                  viewport={{ once: true }}
+                >
+                  {"value" in s ? (
+                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                  ) : (
+                    s.display
+                  )}
+                </motion.div>
                 <div className="mt-1 text-sm text-brand-dark/50">{s.label}</div>
               </StaggerItem>
             ))}
@@ -234,6 +243,7 @@ export default function SecurityPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-30" />
+        <div className="absolute inset-0 opacity-20 animated-gradient-bg" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-bold font-[var(--font-heading)] text-brand-dark">
@@ -244,15 +254,17 @@ export default function SecurityPage() {
               strengthen your infrastructure.
             </p>
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5"
-              >
-                Request Security Audit
-                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <motion.div className="inline-block" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25"
+                >
+                  Request Security Audit
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>

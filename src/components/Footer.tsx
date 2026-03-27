@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const footerLinks = {
   Services: [
@@ -23,19 +26,28 @@ const footerLinks = {
   ],
 };
 
+const socialLinks = [
+  { icon: "X", href: "#" },
+  { icon: "Li", href: "#" },
+  { icon: "Gh", href: "#" },
+];
+
 export function Footer() {
   return (
-    <footer className="bg-brand-dark text-white/80">
+    <footer className="bg-brand-dark text-white/80 relative overflow-hidden">
+      {/* Animated gradient divider at top */}
+      <div className="h-[2px] w-full animated-gradient-bg" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-brand-secondary flex items-center justify-center">
-                <span className="text-white font-bold text-lg font-[var(--font-heading)]">N</span>
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-secondary to-brand-primary flex items-center justify-center">
+                <span className="text-white font-bold text-lg font-[var(--font-heading)]">S</span>
               </div>
               <span className="text-xl font-bold font-[var(--font-heading)] text-white">
-                NexusForge
+                Shellcoders
               </span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-6">
@@ -44,14 +56,16 @@ export function Footer() {
               secure digital infrastructure.
             </p>
             <div className="flex gap-3">
-              {["X", "Li", "Gh"].map((icon) => (
-                <a
-                  key={icon}
-                  href="#"
-                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:bg-brand-secondary hover:text-white transition-all text-xs font-bold"
+              {socialLinks.map((social) => (
+                <motion.a
+                  key={social.icon}
+                  href={social.href}
+                  whileHover={{ scale: 1.15, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white/60 hover:bg-brand-secondary hover:text-white hover:shadow-lg hover:shadow-brand-secondary/25 transition-all text-xs font-bold"
                 >
-                  {icon}
-                </a>
+                  {social.icon}
+                </motion.a>
               ))}
             </div>
           </div>
@@ -67,7 +81,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-white/50 hover:text-brand-accent transition-colors"
+                      className="text-sm text-white/50 hover:text-brand-accent hover:translate-x-1 inline-block transition-all duration-200"
                     >
                       {link.label}
                     </Link>
@@ -81,7 +95,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/40">
-            © {new Date().getFullYear()} NexusForge. All rights reserved.
+            © {new Date().getFullYear()} Shellcoders. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-sm text-white/40 hover:text-white/70 transition-colors">

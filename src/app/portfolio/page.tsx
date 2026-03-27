@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 const projects = [
   {
@@ -13,8 +15,8 @@ const projects = [
     techs: ["React", "Node.js", "AWS", "PostgreSQL", "Redis"],
     color: "from-blue-500/20 to-purple-500/10",
     metrics: [
-      { label: "Active Users", value: "10K+" },
-      { label: "Uptime", value: "99.99%" },
+      { label: "Active Users", value: 10, suffix: "K+" },
+      { label: "Uptime", value: 99.99, suffix: "%" },
     ],
   },
   {
@@ -24,8 +26,8 @@ const projects = [
     techs: ["Next.js", "Python", "FastAPI", "MongoDB", "Docker"],
     color: "from-green-500/20 to-teal-500/10",
     metrics: [
-      { label: "Transactions/day", value: "500K+" },
-      { label: "Fraud Detection", value: "99.7%" },
+      { label: "Transactions/day", value: 500, suffix: "K+" },
+      { label: "Fraud Detection", value: 99.7, suffix: "%" },
     ],
   },
   {
@@ -35,8 +37,8 @@ const projects = [
     techs: ["React", "Node.js", "Kubernetes", "PostgreSQL", "Redis"],
     color: "from-orange-500/20 to-red-500/10",
     metrics: [
-      { label: "Products Listed", value: "1M+" },
-      { label: "Peak Traffic", value: "50K RPS" },
+      { label: "Products Listed", value: 1, suffix: "M+" },
+      { label: "Peak Traffic", value: 50, suffix: "K RPS" },
     ],
   },
   {
@@ -46,8 +48,8 @@ const projects = [
     techs: ["Next.js", "Terraform", "AWS", "GCP", "Kubernetes"],
     color: "from-purple-500/20 to-blue-500/10",
     metrics: [
-      { label: "Cloud Accounts", value: "200+" },
-      { label: "Cost Saved", value: "35%" },
+      { label: "Cloud Accounts", value: 200, suffix: "+" },
+      { label: "Cost Saved", value: 35, suffix: "%" },
     ],
   },
 ];
@@ -80,59 +82,59 @@ export default function PortfolioPage() {
       <section className="py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="space-y-10">
-            {projects.map((project, i) => (
+            {projects.map((project) => (
               <StaggerItem key={project.title}>
-                <motion.div
-                  className={`group relative rounded-3xl bg-gradient-to-br ${project.color} border border-brand-primary/10 overflow-hidden card-hover`}
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="p-8 lg:p-12">
-                    <div className="grid lg:grid-cols-3 gap-8 items-start">
-                      {/* Info */}
-                      <div className="lg:col-span-2">
-                        <span className="inline-block px-3 py-1 rounded-full bg-white/50 text-xs font-semibold text-brand-dark/60 uppercase tracking-wider mb-4">
-                          {project.category}
-                        </span>
-                        <h3 className="text-2xl lg:text-3xl font-bold font-[var(--font-heading)] text-brand-dark mb-3">
-                          {project.title}
-                        </h3>
-                        <p className="text-brand-dark/60 leading-relaxed mb-6">
-                          {project.desc}
-                        </p>
+                <TiltCard tiltAmount={4}>
+                  <div
+                    className={`group relative rounded-3xl bg-gradient-to-br ${project.color} border border-brand-primary/10 overflow-hidden gradient-border-hover`}
+                  >
+                    <div className="p-8 lg:p-12">
+                      <div className="grid lg:grid-cols-3 gap-8 items-start">
+                        {/* Info */}
+                        <div className="lg:col-span-2">
+                          <span className="inline-block px-3 py-1 rounded-full bg-white/50 text-xs font-semibold text-brand-dark/60 uppercase tracking-wider mb-4">
+                            {project.category}
+                          </span>
+                          <h3 className="text-2xl lg:text-3xl font-bold font-[var(--font-heading)] text-brand-dark mb-3 group-hover:text-brand-secondary transition-colors">
+                            {project.title}
+                          </h3>
+                          <p className="text-brand-dark/60 leading-relaxed mb-6">
+                            {project.desc}
+                          </p>
 
-                        {/* Tech tags */}
-                        <div className="flex flex-wrap gap-2">
-                          {project.techs.map((t) => (
-                            <span
-                              key={t}
-                              className="px-3 py-1.5 rounded-lg bg-white/60 text-xs font-medium text-brand-dark/70 border border-brand-primary/10"
+                          {/* Tech tags */}
+                          <div className="flex flex-wrap gap-2">
+                            {project.techs.map((t) => (
+                              <span
+                                key={t}
+                                className="px-3 py-1.5 rounded-lg bg-white/60 text-xs font-medium text-brand-dark/70 border border-brand-primary/10 hover:border-brand-secondary/30 hover:text-brand-secondary transition-all"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Animated Metrics */}
+                        <div className="flex lg:flex-col gap-6 lg:gap-4">
+                          {project.metrics.map((m) => (
+                            <div
+                              key={m.label}
+                              className="p-4 rounded-2xl bg-white/50 border border-white/50 hover:bg-white/70 transition-colors"
                             >
-                              {t}
-                            </span>
+                              <div className="text-2xl font-bold font-[var(--font-heading)] text-brand-dark">
+                                <AnimatedCounter value={m.value} suffix={m.suffix} />
+                              </div>
+                              <div className="text-xs text-brand-dark/50 mt-1">
+                                {m.label}
+                              </div>
+                            </div>
                           ))}
                         </div>
                       </div>
-
-                      {/* Metrics */}
-                      <div className="flex lg:flex-col gap-6 lg:gap-4">
-                        {project.metrics.map((m) => (
-                          <div
-                            key={m.label}
-                            className="p-4 rounded-2xl bg-white/50 border border-white/50"
-                          >
-                            <div className="text-2xl font-bold font-[var(--font-heading)] text-brand-dark">
-                              {m.value}
-                            </div>
-                            <div className="text-xs text-brand-dark/50 mt-1">
-                              {m.label}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   </div>
-                </motion.div>
+                </TiltCard>
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -142,6 +144,7 @@ export default function PortfolioPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 section-gradient relative overflow-hidden">
         <div className="absolute inset-0 dot-pattern opacity-20" />
+        <div className="absolute inset-0 opacity-20 animated-gradient-bg" />
         <div className="relative max-w-3xl mx-auto px-4 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-bold font-[var(--font-heading)] text-brand-dark">
@@ -152,15 +155,17 @@ export default function PortfolioPage() {
               your project to the same level of quality.
             </p>
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25 hover:-translate-y-0.5"
-              >
-                Discuss Your Project
-                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+              <motion.div className="inline-block" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 rounded-full bg-brand-secondary text-white font-semibold hover:bg-brand-secondary/90 transition-all hover:shadow-xl hover:shadow-brand-secondary/25"
+                >
+                  Discuss Your Project
+                  <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </motion.div>
             </div>
           </AnimatedSection>
         </div>
