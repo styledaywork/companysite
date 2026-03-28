@@ -14,11 +14,38 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setSubmitted(true);
+  //   setTimeout(() => setSubmitted(false), 4000);
+  //   setFormData({ name: "", email: "", company: "", service: "", message: "" });
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-    setFormData({ name: "", email: "", company: "", service: "", message: "" });
+
+    try {
+      const res = await fetch("http://localhost:5000/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          message: "",
+        });
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
