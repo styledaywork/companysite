@@ -178,7 +178,7 @@ export default function ContactPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, service: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all relative z-30 pointer-events-auto"
                         >
                           <option value="">Select a service</option>
                           <option value="web">Web Development</option>
