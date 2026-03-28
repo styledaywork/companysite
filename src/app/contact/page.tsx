@@ -25,7 +25,7 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 hero-gradient relative overflow-hidden">
-        <div className="absolute inset-0 dot-pattern opacity-30 pointer-events-none" />
+        <div className="absolute inset-0 dot-pattern opacity-30" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-secondary/10 text-brand-secondary text-sm font-semibold mb-6">
@@ -94,7 +94,7 @@ export default function ContactPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, name: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all relative z-30 pointer-events-auto"
                           placeholder="John Doe"
                         />
                       </div>
@@ -113,7 +113,7 @@ export default function ContactPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all relative z-30 pointer-events-auto"
                           placeholder="john@company.com"
                         />
                       </div>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                           onChange={(e) =>
                             setFormData({ ...formData, company: e.target.value })
                           }
-                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all"
+                          className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all relative z-30 pointer-events-auto"
                           placeholder="Company Inc."
                         />
                       </div>
@@ -180,7 +180,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-brand-primary/20 bg-white/80 text-brand-dark placeholder:text-brand-dark/30 focus:outline-none focus:ring-2 focus:ring-brand-secondary/30 focus:border-brand-secondary input-focus-glow transition-all resize-none relative z-30 pointer-events-auto"
                         placeholder="Describe your project requirements, timeline, and budget..."
                       />
                     </div>
@@ -189,7 +189,7 @@ export default function ContactPage() {
                       type="submit"
                       whileHover={{ scale: 1.02, y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold transition-all shadow-lg hover:shadow-xl hover:shadow-brand-secondary/25"
+                      className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold transition-all shadow-lg hover:shadow-xl hover:shadow-brand-secondary/25 relative z-30 pointer-events-auto"
                     >
                       Send Message
                       <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
