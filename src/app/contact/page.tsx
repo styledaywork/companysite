@@ -25,7 +25,7 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28 hero-gradient relative overflow-hidden">
-        <div className="absolute inset-0 dot-pattern opacity-30" />
+        <div className="absolute inset-0 dot-pattern opacity-30 pointer-events-none" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-brand-secondary/10 text-brand-secondary text-sm font-semibold mb-6">
