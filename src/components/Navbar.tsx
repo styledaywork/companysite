@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { BrandLogo } from "@/components/BrandLogo";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -38,20 +39,24 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between h-16 lg:h-20 gap-6">
 
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 h-12">
+          {/* Logo — square lockup scales with bar height */}
+          <Link
+            href="/"
+            className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
+            aria-label="Shell Coders home"
+          >
             <motion.div
-              whileHover={{ rotate: 8, scale: 1.05 }}
-              className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-secondary to-brand-primary flex items-center justify-center shadow-md"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className="relative h-11 w-11 sm:h-12 sm:w-12 lg:h-[3.5rem] lg:w-[3.5rem]"
             >
-              <span className="text-white font-bold text-lg font-[var(--font-heading)]">
-                S
-              </span>
+              <BrandLogo
+                className="h-full w-full object-contain object-left"
+                priority
+                sizes="(max-width: 1024px) 48px, 56px"
+              />
             </motion.div>
-
-            <span className="text-xl font-bold font-[var(--font-heading)] text-brand-dark group-hover:text-brand-secondary transition-colors">
-              Shellcoders
-            </span>
           </Link>
 
           {/* Desktop Navigation */}

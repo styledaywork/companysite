@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { BrandLogo } from "@/components/BrandLogo";
 
 const footerLinks = {
   Services: [
@@ -41,15 +42,17 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-brand-secondary to-brand-primary flex items-center justify-center">
-                <span className="text-white font-bold text-lg font-[var(--font-heading)]">S</span>
-              </div>
-              <span className="text-xl font-bold font-[var(--font-heading)] text-white">
-                Shellcoders
-              </span>
-            </div>
+          <div className="lg:col-span-2 flex flex-col items-center text-center md:items-start md:text-left">
+            <Link
+              href="/"
+              className="mb-4 inline-flex rounded-2xl bg-white p-3 shadow-md shadow-black/20 ring-1 ring-white/10 transition hover:ring-brand-secondary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary"
+              aria-label="Shell Coders home"
+            >
+              <BrandLogo
+                className="h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] object-contain"
+                sizes="(max-width: 640px) 120px, 144px"
+              />
+            </Link>
             <p className="text-white/60 text-sm leading-relaxed max-w-sm mb-6">
               Engineering secure, scalable digital platforms. We help businesses
               build powerful web platforms, SaaS products, cloud systems, and

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { BrandLogo } from "@/components/BrandLogo";
 import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TypewriterText } from "@/components/ui/TypewriterText";
@@ -126,99 +127,117 @@ export default function HomePage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-32 lg:py-0">
-          <div className="max-w-4xl">
-
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9 }}
-            >
-              <span className="inline-flex items-center px-5 py-2 rounded-full bg-white/40 backdrop-blur-md text-brand-secondary text-sm font-semibold mt-25 mb-6 border border-brand-primary/30 shadow-sm hover:shadow-md transition">
-                <span className="w-2 h-2 rounded-full bg-brand-secondary mr-2 animate-pulse" />
-                Technology Services Partner
-              </span>
-            </motion.div>
-
-            {/* Headline with Typewriter */}
-            <motion.h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold font-[var(--font-heading)] text-brand-dark leading-[1.05] tracking-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.3 }}
-            >
-              Engineering{" "}
-              <span className="inline-block min-w-[180px] sm:min-w-[240px]">
-                <TypewriterText
-                  words={["Secure", "Scalable", "Powerful", "Reliable"]}
-                  className="gradient-text"
-                />
-              </span>{" "}
-              <br className="hidden sm:block" />
-              Digital Platforms
-            </motion.h1>
-
-            {/* Description */}
-            <motion.p
-              className="mt-6 text-lg sm:text-xl text-brand-dark/60 max-w-2xl leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 0.6 }}
-            >
-              We help businesses build powerful web platforms, SaaS products,
-              cloud systems, and secure digital infrastructure — from concept to
-              launch and beyond.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="mt-10 flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 0.9 }}
-            >
-              <Link
-                href="/contact"
-                className="group inline-flex items-center justify-center px-9 py-4 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold text-base shadow-lg hover:shadow-xl hover:shadow-brand-secondary/25 transition-all hover:-translate-y-1"
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+            {/* Copy — left on large screens */}
+            <div className="lg:col-span-7 min-w-0">
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9 }}
               >
-                Start Your Project
-                <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
+                <span className="inline-flex items-center px-5 py-2 rounded-full bg-white/40 backdrop-blur-md text-brand-secondary text-sm font-semibold mt-25 mb-6 border border-brand-primary/30 shadow-sm hover:shadow-md transition">
+                  <span className="w-2 h-2 rounded-full bg-brand-secondary mr-2 animate-pulse" />
+                  Technology Services Partner
+                </span>
+              </motion.div>
 
-              <Link
-                href="/services"
-                className="inline-flex items-center justify-center px-9 py-4 rounded-full border-2 border-brand-dark/15 text-brand-dark font-semibold text-base hover:border-brand-secondary hover:text-brand-secondary transition-all hover:-translate-y-1"
+              {/* Headline with Typewriter */}
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold font-[var(--font-heading)] text-brand-dark leading-[1.05] tracking-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.2, delay: 0.3 }}
               >
-                Explore Our Services
-              </Link>
-            </motion.div>
+                Engineering{" "}
+                <span className="inline-block min-w-[180px] sm:min-w-[240px]">
+                  <TypewriterText
+                    words={["Secure", "Scalable", "Powerful", "Reliable"]}
+                    className="gradient-text"
+                  />
+                </span>{" "}
+                <br className="hidden sm:block" />
+                Digital Platforms
+              </motion.h1>
 
-            {/* Animated Stats */}
-            <motion.div
-              className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 1.0 }}
-            >
-              {[
-                { value: 50, suffix: "+", label: "Projects Delivered" },
-                { value: 99.9, suffix: "%", label: "Uptime SLA" },
-                { value: 12, suffix: "+", label: "Industries Served" },
-              ].map((s) => (
-                <div
-                  key={s.label}
-                  className="bg-white/40 backdrop-blur-md border border-brand-primary/30 rounded-xl p-6 shadow-sm hover:shadow-lg hover:border-brand-secondary/30 transition-all duration-300 hover:-translate-y-1"
+              {/* Description */}
+              <motion.p
+                className="mt-6 text-lg sm:text-xl text-brand-dark/60 max-w-2xl leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.0, delay: 0.6 }}
+              >
+                We help businesses build powerful web platforms, SaaS products,
+                cloud systems, and secure digital infrastructure — from concept to
+                launch and beyond.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                className="mt-10 flex flex-col sm:flex-row gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1.0, delay: 0.9 }}
+              >
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center justify-center px-9 py-4 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold text-base shadow-lg hover:shadow-xl hover:shadow-brand-secondary/25 transition-all hover:-translate-y-1"
                 >
-                  <div className="text-3xl font-bold font-[var(--font-heading)] text-brand-dark">
-                    <AnimatedCounter value={s.value} suffix={s.suffix} />
-                  </div>
-                  <div className="text-sm text-brand-dark/50 mt-1">{s.label}</div>
-                </div>
-              ))}
-            </motion.div>
+                  Start Your Project
+                  <svg className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
 
+                <Link
+                  href="/services"
+                  className="inline-flex items-center justify-center px-9 py-4 rounded-full border-2 border-brand-dark/15 text-brand-dark font-semibold text-base hover:border-brand-secondary hover:text-brand-secondary transition-all hover:-translate-y-1"
+                >
+                  Explore Our Services
+                </Link>
+              </motion.div>
+
+              {/* Animated Stats */}
+              <motion.div
+                className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2, duration: 1.0 }}
+              >
+                {[
+                  { value: 50, suffix: "+", label: "Projects Delivered" },
+                  { value: 99.9, suffix: "%", label: "Uptime SLA" },
+                  { value: 12, suffix: "+", label: "Industries Served" },
+                ].map((s) => (
+                  <div
+                    key={s.label}
+                    className="bg-white/40 backdrop-blur-md border border-brand-primary/30 rounded-xl p-6 shadow-sm hover:shadow-lg hover:border-brand-secondary/30 transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <div className="text-3xl font-bold font-[var(--font-heading)] text-brand-dark">
+                      <AnimatedCounter value={s.value} suffix={s.suffix} />
+                    </div>
+                    <div className="text-sm text-brand-dark/50 mt-1">{s.label}</div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Brand mark — right of headline on large screens; below headline, right-aligned on small */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.75, delay: 0.2 }}
+              className="lg:col-span-5 flex justify-end lg:justify-end -mt-2 sm:mt-0 lg:mt-0 lg:self-center"
+            >
+              <div className="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-none lg:w-full flex justify-end">
+                <div className="rounded-2xl bg-white/60 p-4 sm:p-5 shadow-md shadow-brand-dark/5 ring-1 ring-brand-primary/20 backdrop-blur-md w-full max-w-[min(100%,280px)] lg:max-w-[320px] xl:max-w-[360px]">
+                  <BrandLogo
+                    className="h-auto w-full object-contain object-center"
+                    sizes="(max-width: 1024px) 260px, (max-width: 1280px) 320px, 360px"
+                  />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
