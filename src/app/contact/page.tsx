@@ -265,7 +265,7 @@ export default function ContactPage() {
                       Email Us
                     </h3>
                     <p className="text-sm text-brand-dark/60">
-                      styledaywork@gmail.com
+                      shellcoderss@gmail.com
                     </p>
                     <p className="text-sm text-brand-dark/40 mt-1">
                       We respond within 24 hours
@@ -331,7 +331,7 @@ export default function ContactPage() {
                       <p className="text-sm text-white/80 leading-relaxed">
                         For large-scale projects and enterprise partnerships,
                         contact our solutions team directly at{" "}
-                        <strong>styledaywork@gmail.com</strong>
+                        <strong>Shellcoderss@gmail.com</strong>
                       </p>
                     </div>
                   </motion.div>

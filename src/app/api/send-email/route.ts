@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const mailOptions = {
       from: process.env.EMAIL_USER, // Sender must be authenticated user to avoid spam blocks
       replyTo: `"${name}" <${email}>`, // Submitter email for replies
-      to: 'styledaywork@gmail.com', // Recipient destination
+      to: 'shellcoderss@gmail.com', // Recipient destination
       subject: `New Project Inquiry from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
