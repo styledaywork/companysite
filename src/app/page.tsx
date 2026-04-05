@@ -245,7 +245,7 @@ export default function HomePage() {
               className="hidden lg:flex lg:col-span-5 justify-end lg:pt-2 xl:pt-4"
             >
               <div className="flex w-full max-w-[320px] xl:max-w-[360px] justify-end">
-                <div className="rounded-2xl bg-white/60 p-5 xl:p-6 shadow-md shadow-brand-dark/5 ring-1 ring-brand-primary/20 backdrop-blur-md w-full">
+                <div className="mt-40 rounded-2xl bg-white/60 p-5 xl:p-6 shadow-md shadow-brand-dark/5 ring-1 ring-brand-primary/20 backdrop-blur-md w-full">
                   <BrandLogo
                     className="h-auto w-full object-contain object-center"
                     sizes="(max-width: 1280px) 320px, 360px"
