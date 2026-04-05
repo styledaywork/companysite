@@ -233,9 +233,8 @@ export default function ContactPage() {
                       disabled={isSubmitting}
                       whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
                       whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                      className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold transition-all shadow-lg hover:shadow-xl hover:shadow-brand-secondary/25 relative z-50 pointer-events-auto ${
-                        isSubmitting ? "opacity-75 cursor-not-allowed" : ""
-                      }`}
+                      className={`w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold transition-all shadow-lg hover:shadow-xl hover:shadow-brand-secondary/25 relative z-50 pointer-events-auto ${isSubmitting ? "opacity-75 cursor-not-allowed" : ""
+                        }`}
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
                       {!isSubmitting && (
@@ -266,7 +265,7 @@ export default function ContactPage() {
                       Email Us
                     </h3>
                     <p className="text-sm text-brand-dark/60">
-                      hello@shellcoders.dev
+                      styledaywork@gmail.com
                     </p>
                     <p className="text-sm text-brand-dark/40 mt-1">
                       We respond within 24 hours
@@ -332,7 +331,7 @@ export default function ContactPage() {
                       <p className="text-sm text-white/80 leading-relaxed">
                         For large-scale projects and enterprise partnerships,
                         contact our solutions team directly at{" "}
-                        <strong>enterprise@shellcoders.dev</strong>
+                        <strong>styledaywork@gmail.com</strong>
                       </p>
                     </div>
                   </motion.div>
