@@ -127,7 +127,7 @@ export default function HomePage() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-32 lg:py-0">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 lg:items-start">
             {/* Copy — left on large screens */}
             <div className="lg:col-span-7 min-w-0">
               {/* Badge */}
@@ -159,6 +159,21 @@ export default function HomePage() {
                 <br className="hidden sm:block" />
                 Digital Platforms
               </motion.h1>
+
+              {/* Logo — under headline on small screens, right-aligned */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.75, delay: 0.35 }}
+                className="mt-5 flex justify-end lg:hidden"
+              >
+                <div className="rounded-2xl bg-white/60 p-4 shadow-md shadow-brand-dark/5 ring-1 ring-brand-primary/20 backdrop-blur-md w-full max-w-[220px] sm:max-w-[260px]">
+                  <BrandLogo
+                    className="h-auto w-full object-contain object-center"
+                    sizes="(max-width: 640px) 220px, 260px"
+                  />
+                </div>
+              </motion.div>
 
               {/* Description */}
               <motion.p
@@ -222,18 +237,18 @@ export default function HomePage() {
               </motion.div>
             </div>
 
-            {/* Brand mark — right of headline on large screens; below headline, right-aligned on small */}
+            {/* Brand mark — right column beside headline (lg+) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.75, delay: 0.2 }}
-              className="lg:col-span-5 flex justify-end lg:justify-end -mt-2 sm:mt-0 lg:mt-0 lg:self-center"
+              className="hidden lg:flex lg:col-span-5 justify-end lg:pt-2 xl:pt-4"
             >
-              <div className="w-full max-w-[220px] sm:max-w-[260px] lg:max-w-none lg:w-full flex justify-end">
-                <div className="rounded-2xl bg-white/60 p-4 sm:p-5 shadow-md shadow-brand-dark/5 ring-1 ring-brand-primary/20 backdrop-blur-md w-full max-w-[min(100%,280px)] lg:max-w-[320px] xl:max-w-[360px]">
+              <div className="flex w-full max-w-[320px] xl:max-w-[360px] justify-end">
+                <div className="rounded-2xl bg-white/60 p-5 xl:p-6 shadow-md shadow-brand-dark/5 ring-1 ring-brand-primary/20 backdrop-blur-md w-full">
                   <BrandLogo
                     className="h-auto w-full object-contain object-center"
-                    sizes="(max-width: 1024px) 260px, (max-width: 1280px) 320px, 360px"
+                    sizes="(max-width: 1280px) 320px, 360px"
                   />
                 </div>
               </div>
